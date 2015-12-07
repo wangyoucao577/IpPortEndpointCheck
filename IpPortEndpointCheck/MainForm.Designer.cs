@@ -1,4 +1,4 @@
-﻿namespace IpPortTest
+﻿namespace IpPortEndpointCheck
 {
     partial class MainForm
     {

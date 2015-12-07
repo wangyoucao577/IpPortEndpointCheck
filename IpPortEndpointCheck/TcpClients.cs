@@ -6,7 +6,7 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 
-namespace IpPortTest
+namespace IpPortEndpointCheck
 {
     class TcpClients
     {

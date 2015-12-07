@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Threading;
 
-namespace IpPortTest
+namespace IpPortEndpointCheck
 {
     public partial class MainForm : Form
     {
