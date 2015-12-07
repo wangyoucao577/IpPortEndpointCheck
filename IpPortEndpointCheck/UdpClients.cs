@@ -9,11 +9,8 @@ using System.Net;
 
 namespace IpPortEndpointCheck
 {
-    class UdpClients
+    class UdpClients : NetClients
     {
-        private List<int> m_portList = new List<int>();
-        private object m_portListMutex = new object();
-
         private List<int> m_exceptionalPortList = new List<int>();
         private object m_exceptionalPortListMutex = new object();
 

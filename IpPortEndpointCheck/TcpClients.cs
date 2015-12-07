@@ -8,11 +8,8 @@ using System.Net;
 
 namespace IpPortEndpointCheck
 {
-    class TcpClients
+    class TcpClients : NetClients
     {
-        private List<int> m_tcpPortList = new List<int>();
-        private object m_portListMutex = new object();
-
         private List<int> m_exceptionalTcpPortList = new List<int>();
         private object m_exceptionalTcpPortListMutex = new object();
 
@@ -40,7 +37,7 @@ namespace IpPortEndpointCheck
 
             lock (m_portListMutex)
             {
-                m_tcpPortList.Add(tcpPort);
+                m_portList.Add(tcpPort);
             }
 
             return true;
@@ -51,8 +48,8 @@ namespace IpPortEndpointCheck
             int port = 0;
             lock (m_portListMutex)
             {
-                port = m_tcpPortList[0];
-                m_tcpPortList.RemoveAt(0);
+                port = m_portList[0];
+                m_portList.RemoveAt(0);
             }
 
             return port;
@@ -62,7 +59,7 @@ namespace IpPortEndpointCheck
         {
             
 
-            int count = m_tcpPortList.Count;
+            int count = m_portList.Count;
 
             lock (m_connectingMutex)
             {
