@@ -48,8 +48,8 @@
             this.udpCommonButton = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBoxTcp = new System.Windows.Forms.CheckBox();
             this.checkBoxUdp = new System.Windows.Forms.CheckBox();
+            this.checkBoxTcp = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -183,7 +183,6 @@
             // 
             // udpPortAddButton
             // 
-            this.udpPortAddButton.Enabled = false;
             this.udpPortAddButton.Location = new System.Drawing.Point(125, 140);
             this.udpPortAddButton.Name = "udpPortAddButton";
             this.udpPortAddButton.Size = new System.Drawing.Size(94, 25);
@@ -194,7 +193,6 @@
             // 
             // addUdpPortTextBox
             // 
-            this.addUdpPortTextBox.Enabled = false;
             this.addUdpPortTextBox.Location = new System.Drawing.Point(125, 118);
             this.addUdpPortTextBox.Name = "addUdpPortTextBox";
             this.addUdpPortTextBox.Size = new System.Drawing.Size(94, 20);
@@ -220,7 +218,6 @@
             // 
             // udpEmptyButton
             // 
-            this.udpEmptyButton.Enabled = false;
             this.udpEmptyButton.Location = new System.Drawing.Point(18, 160);
             this.udpEmptyButton.Name = "udpEmptyButton";
             this.udpEmptyButton.Size = new System.Drawing.Size(76, 25);
@@ -230,7 +227,6 @@
             // 
             // udpCommonButton
             // 
-            this.udpCommonButton.Enabled = false;
             this.udpCommonButton.Location = new System.Drawing.Point(125, 34);
             this.udpCommonButton.Name = "udpCommonButton";
             this.udpCommonButton.Size = new System.Drawing.Size(94, 66);
@@ -258,6 +254,19 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Protocol";
             // 
+            // checkBoxUdp
+            // 
+            this.checkBoxUdp.AutoSize = true;
+            this.checkBoxUdp.Checked = true;
+            this.checkBoxUdp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxUdp.Location = new System.Drawing.Point(82, 21);
+            this.checkBoxUdp.Name = "checkBoxUdp";
+            this.checkBoxUdp.Size = new System.Drawing.Size(49, 17);
+            this.checkBoxUdp.TabIndex = 0;
+            this.checkBoxUdp.Text = "UDP";
+            this.checkBoxUdp.UseVisualStyleBackColor = true;
+            this.checkBoxUdp.CheckedChanged += new System.EventHandler(this.checkBoxUdp_CheckedChanged);
+            // 
             // checkBoxTcp
             // 
             this.checkBoxTcp.AutoSize = true;
@@ -270,17 +279,6 @@
             this.checkBoxTcp.Text = "TCP";
             this.checkBoxTcp.UseVisualStyleBackColor = true;
             this.checkBoxTcp.CheckedChanged += new System.EventHandler(this.checkBoxTcp_CheckedChanged);
-            // 
-            // checkBoxUdp
-            // 
-            this.checkBoxUdp.AutoSize = true;
-            this.checkBoxUdp.Location = new System.Drawing.Point(82, 21);
-            this.checkBoxUdp.Name = "checkBoxUdp";
-            this.checkBoxUdp.Size = new System.Drawing.Size(49, 17);
-            this.checkBoxUdp.TabIndex = 0;
-            this.checkBoxUdp.Text = "UDP";
-            this.checkBoxUdp.UseVisualStyleBackColor = true;
-            this.checkBoxUdp.CheckedChanged += new System.EventHandler(this.checkBoxUdp_CheckedChanged);
             // 
             // MainForm
             // 
@@ -300,8 +298,8 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FindPort";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
