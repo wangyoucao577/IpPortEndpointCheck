@@ -11,14 +11,8 @@ namespace IpPortEndpointCheck
     class TcpClients : NetClients
     {
         
-        public TcpClients(IPAddress ip)
+        public TcpClients(IPAddress ip) : base(ip)
         {
-            m_ip = ip;
-        }
-
-        public IPAddress TargetIP
-        {
-            get { return m_ip; }
         }
 
         public bool AddPort(int tcpPort)

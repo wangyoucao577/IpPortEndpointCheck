@@ -11,15 +11,10 @@ namespace IpPortEndpointCheck
 {
     class UdpClients : NetClients
     {
-        public UdpClients(IPAddress ip)
+        public UdpClients(IPAddress ip) : base(ip)
         {
-            m_ip = ip;
         }
 
-        public IPAddress TargetIP
-        {
-            get { return m_ip; }
-        }
 
         public bool AddPort(int port)
         {
