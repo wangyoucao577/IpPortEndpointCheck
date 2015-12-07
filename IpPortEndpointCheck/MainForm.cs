@@ -246,6 +246,7 @@ namespace IpPortEndpointCheck
             ipTextBox.Enabled = false;
             modeComboBox.Enabled = false;
 
+            string showText = null;
             if (checkBoxTcp.Checked)
             {
                 TcpClients tclis = new TcpClients(ip);
@@ -261,25 +262,28 @@ namespace IpPortEndpointCheck
                     Thread.Sleep(500);
                 }
 
+                showText += "TCP Ports ";
                 if (null != exceptionalTcpPorts && exceptionalTcpPorts.Count > 0)
                 {
-                    string showText = null;
                     foreach (int item in exceptionalTcpPorts)
                     {
                         showText += item.ToString();
                         showText += " ";
                     }
                     showText += " invalid!";
-                    MessageBox.Show(showText);
+                    //MessageBox.Show(showText);
                 }
                 else
                 {
-                    MessageBox.Show("Ports valid.");
+                    //MessageBox.Show(" valid.");
+                    showText += "ALL valid.";
                 }
             }
 
             if (checkBoxUdp.Checked)
             {
+                showText += "\nUDP Ports ";
+
                 UdpClients tclis = new UdpClients(ip);
                 foreach (string item in udpPorts)
                 {
@@ -295,21 +299,22 @@ namespace IpPortEndpointCheck
 
                 if (null != exceptionalPorts && exceptionalPorts.Count > 0)
                 {
-                    string showText = null;
                     foreach (int item in exceptionalPorts)
                     {
                         showText += item.ToString();
                         showText += " ";
                     }
                     showText += " invalid!";
-                    MessageBox.Show(showText);
+                    //MessageBox.Show(showText);
                 }
                 else
                 {
-                    MessageBox.Show("Ports valid.");
+                    //MessageBox.Show("Ports valid.");
+                    showText += "ALL valid.";
                 }
             }
 
+            MessageBox.Show(showText);
 
             EnableTcpUI(true);
             EnableUdpUI(true);
