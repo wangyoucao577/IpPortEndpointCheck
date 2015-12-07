@@ -15,31 +15,6 @@ namespace IpPortEndpointCheck
         {
         }
 
-
-        public bool AddPort(int port)
-        {
-            Debug.Assert(port >= 0 && port < 65536);
-
-            lock (m_portListMutex)
-            {
-                m_portList.Add(port);
-            }
-
-            return true;
-        }
-
-        public int PopPort()
-        {
-            int port = 0;
-            lock (m_portListMutex)
-            {
-                port = m_portList[0];
-                m_portList.RemoveAt(0);
-            }
-
-            return port;
-        }
-
         public void StartConnect()
         {
             int count = m_portList.Count;
@@ -58,48 +33,7 @@ namespace IpPortEndpointCheck
             }
         }
 
-        public bool DecreaseConnect()
-        {
-            lock (m_connectingMutex)
-            {
-                --m_connecting;
-            }
 
-            return true;
-        }
-
-        public bool IsConnectFinished(out List<int> exceptionalPorts)
-        {
-            bool finish = false;
-            lock (m_connectingMutex)
-            {
-                finish = m_connecting <= 0 ? true : false;
-            }
-
-            if (finish)
-            {
-                lock (m_exceptionalPortListMutex)
-                {
-                    exceptionalPorts = m_exceptionalPortList;
-                }
-            }
-            else
-            {
-                exceptionalPorts = null;
-            }
-
-            return finish;
-        }
-
-        public bool AddExceptionalPort(int port)
-        {
-            lock (m_exceptionalPortListMutex)
-            {
-                m_exceptionalPortList.Add(port);
-            }
-
-            return true;
-        }
 
         static private void UdpConnectThreadProc(object data)
         {
