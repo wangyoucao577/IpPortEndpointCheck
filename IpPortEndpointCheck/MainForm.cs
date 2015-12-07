@@ -280,9 +280,36 @@ namespace IpPortEndpointCheck
 
             if (checkBoxUdp.Checked)
             {
-                //TODO: add udp functions
+                UdpClients tclis = new UdpClients(ip);
+                foreach (string item in udpPorts)
+                {
+                    tclis.AddPort(Convert.ToInt32(item));
+                }
+                tclis.StartConnect();
+
+                List<int> exceptionalPorts;
+                while (!tclis.IsConnectFinished(out exceptionalPorts))
+                {
+                    Thread.Sleep(500);
+                }
+
+                if (null != exceptionalPorts && exceptionalPorts.Count > 0)
+                {
+                    string showText = null;
+                    foreach (int item in exceptionalPorts)
+                    {
+                        showText += item.ToString();
+                        showText += " ";
+                    }
+                    showText += " invalid!";
+                    MessageBox.Show(showText);
+                }
+                else
+                {
+                    MessageBox.Show("Ports valid.");
+                }
             }
-            
+
 
             EnableTcpUI(true);
             EnableUdpUI(true);

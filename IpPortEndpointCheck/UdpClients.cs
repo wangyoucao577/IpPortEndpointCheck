@@ -146,7 +146,7 @@ namespace IpPortEndpointCheck
             //    }
             //}
 
-            //tcpClients.DecreaseConnect();
+            udpClients.DecreaseConnect();
         }
 
     }
