@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列属性集
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("IpPortTest")]
-[assembly: AssemblyDescription("公网IP端口测试小软件")]
+[assembly: AssemblyTitle("IpPortEndpointCheck")]
+[assembly: AssemblyDescription("Check for Tcp and Udp port on public IP")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("AVIT")]
-[assembly: AssemblyProduct("IpPortTest")]
-[assembly: AssemblyCopyright("Copyright ©  AVIT 2012-2013")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("IpPortEndpointCheck")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“内部版本号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.4.0")]
-[assembly: AssemblyFileVersion("1.0.4.0")]
+[assembly: AssemblyVersion("1.0.5.0")]
+[assembly: AssemblyFileVersion("1.0.5.0")]
