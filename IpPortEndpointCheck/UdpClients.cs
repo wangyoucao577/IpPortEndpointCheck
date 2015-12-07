@@ -11,15 +11,6 @@ namespace IpPortEndpointCheck
 {
     class UdpClients : NetClients
     {
-        private List<int> m_exceptionalPortList = new List<int>();
-        private object m_exceptionalPortListMutex = new object();
-
-        private List<Thread> m_connectThreadList = new List<Thread>();
-
-        private int m_connecting = 0;
-        private object m_connectingMutex = new object();
-
-        private IPAddress m_ip = null;
         public UdpClients(IPAddress ip)
         {
             m_ip = ip;

@@ -10,16 +10,6 @@ namespace IpPortEndpointCheck
 {
     class TcpClients : NetClients
     {
-        private List<int> m_exceptionalTcpPortList = new List<int>();
-        private object m_exceptionalTcpPortListMutex = new object();
-
-        private List<Thread> m_connectThreadList = new List<Thread>();
-
-        private int m_connecting = 0;
-        private object m_connectingMutex = new object();
-
-        private IPAddress m_ip = null;
-
         
         public TcpClients(IPAddress ip)
         {
@@ -96,9 +86,9 @@ namespace IpPortEndpointCheck
 
             if (finish)
             {
-                lock (m_exceptionalTcpPortListMutex)
+                lock (m_exceptionalPortListMutex)
                 {
-                    exceptionalPorts = m_exceptionalTcpPortList;
+                    exceptionalPorts = m_exceptionalPortList;
                 }
             }
             else
@@ -112,9 +102,9 @@ namespace IpPortEndpointCheck
 
         public bool AddExceptionalPort(int port)
         {
-            lock (m_exceptionalTcpPortListMutex)
+            lock (m_exceptionalPortListMutex)
             {
-                m_exceptionalTcpPortList.Add(port);
+                m_exceptionalPortList.Add(port);
             }
 
             return true;
