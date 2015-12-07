@@ -15,27 +15,7 @@ namespace IpPortEndpointCheck
         {
         }
 
-        public void StartConnect()
-        {
-            int count = m_portList.Count;
-
-            lock (m_connectingMutex)
-            {
-                m_connecting = count;
-            }
-
-            for (int i = 0; i < count; i++)
-            {
-                Thread threadId = new Thread(UdpClients.UdpConnectThreadProc);
-                threadId.Start((object)this);
-
-                m_connectThreadList.Add(threadId);
-            }
-        }
-
-
-
-        static private void UdpConnectThreadProc(object data)
+        static public void UdpConnectThreadProc(object data)
         {
             UdpClients udpClients = (UdpClients)data;
             int port = udpClients.PopPort();

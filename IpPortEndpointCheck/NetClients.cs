@@ -99,5 +99,23 @@ namespace IpPortEndpointCheck
             return true;
         }
 
+        public void StartConnect(ParameterizedThreadStart start)
+        {
+            int count = m_portList.Count;
+
+            lock (m_connectingMutex)
+            {
+                m_connecting = count;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                Thread threadId = new Thread(start);
+                threadId.Start((object)this);
+
+                m_connectThreadList.Add(threadId);
+            }
+        }
+
     }
 }
