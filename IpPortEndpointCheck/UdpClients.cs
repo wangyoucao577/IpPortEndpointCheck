@@ -123,28 +123,70 @@ namespace IpPortEndpointCheck
             UdpClients udpClients = (UdpClients)data;
             int port = udpClients.PopPort();
 
-            //TODO: add actually functions here
+            UdpClient ucli = new UdpClient();
+            Socket uSocket = ucli.Client;
+            uSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 10000);
 
-            //UdpClient tcli = new TcpClient();
-            //tcli.SendTimeout = 1000;
+            //Send
+            Byte[] sendBytes = Encoding.ASCII.GetBytes("AreYouOk?");
+            try
+            {
+                ucli.Send(sendBytes, sendBytes.Length, new IPEndPoint(udpClients.TargetIP, port));
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e.ToString());
+                Debug.Assert(false);
+            }
 
-            //try
-            //{
-            //    tcli.Connect(new IPEndPoint(tcpClients.TargetIP, port));
-            //    tcli.Close();
-            //}
-            //catch (SocketException ex)
-            //{
-            //    switch (ex.ErrorCode)
-            //    {
-            //        case 10061:
-            //            tcpClients.AddExceptionalPort(port);
-            //            break;
-            //        default:
-            //            tcpClients.AddExceptionalPort(port);
-            //            break;
-            //    }
-            //}
+            //Receive
+            //Creates an IPEndPoint to record the IP Address and port number of the sender. 
+            // The IPEndPoint will allow you to read datagrams sent from any source.
+            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            try
+            {
+
+                // Blocks until a message returns on this socket from a remote host.
+                Byte[] receiveBytes = ucli.Receive(ref RemoteIpEndPoint);
+                ucli.Close();
+
+                string returnData = Encoding.ASCII.GetString(receiveBytes);
+
+                Trace.WriteLine("This is the message you received :" +
+                                             returnData.ToString());
+                Trace.WriteLine("This message was sent from " +
+                                            RemoteIpEndPoint.Address.ToString() +
+                                            " on their port number " +
+                                            RemoteIpEndPoint.Port.ToString());
+
+                if (returnData.ToString().Contains("ImOk!"))
+                {
+
+                }
+                else
+                {
+                    udpClients.AddExceptionalPort(port);
+                }
+
+            }
+            catch (SocketException ex)
+            {
+                Trace.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
+                switch (ex.ErrorCode)
+                {
+                    case 10054:
+                        break;
+                    default:
+                        break;
+                }
+
+                udpClients.AddExceptionalPort(port);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e.ToString());
+                Debug.Assert(false);
+            }
 
             udpClients.DecreaseConnect();
         }
