@@ -8,12 +8,8 @@ using System.Net;
 
 namespace IpPortEndpointCheck
 {
-    class TcpListeners : NetClients
+    class TcpListeners : NetCheckServers
     {
-        private bool m_goonListen = true;
-        private object m_goonListenMutex = new object();
-
-        public TcpListeners() : base(null) { }
 
         public bool StartListen()
         {
@@ -27,29 +23,6 @@ namespace IpPortEndpointCheck
             DoStart(TcpListeners.TcpListenerThreadProc);
 
             return true;
-        }
-        public void StopListen()
-        {
-            lock (m_goonListenMutex)
-            {
-                m_goonListen = false;
-            }
-        }
-
-        public void WaitListensStop()
-        {
-            foreach (Thread item in m_threadList)
-            {
-                item.Join();
-            }
-        }
-
-        private bool GoonListening()
-        {
-            lock (m_goonListenMutex)
-            {
-                return m_goonListen;
-            }
         }
 
         static private void TcpListenerThreadProc(object data)
