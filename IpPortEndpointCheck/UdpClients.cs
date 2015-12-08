@@ -26,7 +26,7 @@ namespace IpPortEndpointCheck
 
             UdpClient ucli = new UdpClient();
             Socket uSocket = ucli.Client;
-            uSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 10000);
+            uSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
 
             //Send
             Byte[] sendBytes = Encoding.ASCII.GetBytes("AreYouOk?");
