@@ -22,12 +22,12 @@ namespace IpPortEndpointCheck
         protected object m_connectingMutex = new object();
 
         protected IPAddress m_ip = null;
-        public IPAddress TargetIP
+        protected IPAddress TargetIP
         {
             get { return m_ip; }
         }
 
-        public NetClients(IPAddress ip)
+        protected NetClients(IPAddress ip)
         {
             m_ip = ip;
         }
