@@ -88,7 +88,7 @@ namespace IpPortEndpointCheck
             return true;
         }
 
-        public bool DecreaseConnect()
+        protected bool DoDecrease()
         {
             lock (m_connectingMutex)
             {
@@ -98,7 +98,7 @@ namespace IpPortEndpointCheck
             return true;
         }
 
-        protected void DoStartConnect(ParameterizedThreadStart start)
+        protected void DoStart(ParameterizedThreadStart start)
         {
             int count = m_portList.Count;
 

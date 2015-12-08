@@ -24,13 +24,7 @@ namespace IpPortEndpointCheck
 
             int count = m_portList.Count;
 
-            for (int i = 0; i < count; i++)
-            {
-                Thread threadId = new Thread(TcpListeners.TcpListenerThreadProc);
-                threadId.Start((object)this);
-
-                m_threadList.Add(threadId);
-            }
+            DoStart(TcpListeners.TcpListenerThreadProc);
 
             return true;
         }
@@ -90,6 +84,7 @@ namespace IpPortEndpointCheck
                 }
             }
 
+            tcpListener.DoDecrease();
         }
     }
 }

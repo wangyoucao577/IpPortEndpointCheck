@@ -16,7 +16,7 @@ namespace IpPortEndpointCheck
 
         public override void StartConnect()
         {
-            DoStartConnect(UdpClients.UdpConnectThreadProc);
+            DoStart(UdpClients.UdpConnectThreadProc);
         }
 
         static private void UdpConnectThreadProc(object data)
@@ -89,7 +89,7 @@ namespace IpPortEndpointCheck
                 Debug.Assert(false);
             }
 
-            udpClients.DecreaseConnect();
+            udpClients.DoDecrease();
         }
 
     }

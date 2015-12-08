@@ -15,7 +15,7 @@ namespace IpPortEndpointCheck
 
         public override void StartConnect()
         {
-            DoStartConnect(TcpClients.TcpConnectThreadProc);
+            DoStart(TcpClients.TcpConnectThreadProc);
         }
 
         static private void TcpConnectThreadProc(object data)
@@ -44,7 +44,7 @@ namespace IpPortEndpointCheck
                 }
             }
 
-            tcpClients.DecreaseConnect();
+            tcpClients.DoDecrease();
         }
     }
 }
