@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.modeComboBox = new System.Windows.Forms.ComboBox();
             this.startStopButton = new System.Windows.Forms.Button();
             this.ipTextBox = new System.Windows.Forms.TextBox();
@@ -50,9 +51,12 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.checkBoxUdp = new System.Windows.Forms.CheckBox();
             this.checkBoxTcp = new System.Windows.Forms.CheckBox();
+            this.timer2CheckServerException = new System.Windows.Forms.Timer(this.components);
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -237,6 +241,8 @@
             // 
             // statusStrip
             // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 380);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(560, 22);
@@ -280,6 +286,15 @@
             this.checkBoxTcp.UseVisualStyleBackColor = true;
             this.checkBoxTcp.CheckedChanged += new System.EventHandler(this.checkBoxTcp_CheckedChanged);
             // 
+            // timer2CheckServerException
+            // 
+            this.timer2CheckServerException.Tick += new System.EventHandler(this.timer2CheckServerException_Tick);
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,6 +321,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
@@ -337,6 +354,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox checkBoxUdp;
         private System.Windows.Forms.CheckBox checkBoxTcp;
+        private System.Windows.Forms.Timer timer2CheckServerException;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
 

@@ -24,6 +24,7 @@ namespace IpPortEndpointCheck
         {
             string[] tcpPorts = tcpPortsTextBox.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             string[] udpPorts = udpPortsTextBox.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            toolStripStatusLabel.Text = ""; //Clear the tooltip
 
             if (checkBoxTcp.Checked && tcpPorts.Length <= 0)
             {
@@ -344,11 +345,14 @@ namespace IpPortEndpointCheck
                     }
                     m_udpServer.StartListen();
                 }
-                            
+
+                timer2CheckServerException.Enabled = true;
             }
             else
             {
                 //goto stop
+                timer2CheckServerException.Enabled = false;
+
                 if (checkBoxTcp.Checked)
                 {
                     m_tcpListeners.StopListen();
@@ -398,6 +402,28 @@ namespace IpPortEndpointCheck
                 checkBoxUdp.Enabled = true;
                 modeComboBox.Enabled = true;
                 startStopButton.Text = "Start";
+            }
+        }
+
+        private void timer2CheckServerException_Tick(object sender, EventArgs e)
+        {
+            //TCP is not important to do a tip because it will not interfere the result
+
+            //UDP
+            if (checkBoxUdp.Checked)
+            {
+                List<int> udpExceptionPortList = m_udpServer.ExceptionPortList;
+                if (udpExceptionPortList.Count > 0)
+                {
+                    string udpPortsTipText = "Warning: UDP Port ";
+                    foreach (int item in udpExceptionPortList)
+                    {
+                        udpPortsTipText += item.ToString();
+                        udpPortsTipText += " ";
+                    }
+                    udpPortsTipText += "Already In Use!";
+                    toolStripStatusLabel.Text = udpPortsTipText;
+                }
             }
         }
     }

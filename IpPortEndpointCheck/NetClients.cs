@@ -29,6 +29,17 @@ namespace IpPortEndpointCheck
             get { return m_ip; }
         }
 
+        public List<int> ExceptionPortList
+        {
+            get
+            {
+                lock (m_exceptionalPortListMutex)
+                {
+                    return m_exceptionalPortList;
+                }
+            }
+        }
+
         protected NetClients(IPAddress ip)
         {
             m_ip = ip;
