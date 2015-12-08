@@ -44,7 +44,7 @@ namespace IpPortEndpointCheck
             }
         }
 
-        public bool GoonListening()
+        private bool GoonListening()
         {
             lock (m_goonListenMutex)
             {
