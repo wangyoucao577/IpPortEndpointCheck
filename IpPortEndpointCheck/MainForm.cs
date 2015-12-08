@@ -13,6 +13,7 @@ namespace IpPortEndpointCheck
     public partial class MainForm : Form
     {
         private TcpListeners m_tcpListeners = null;
+        private UdpServer m_udpServer = null;
 
         public MainForm()
         {
@@ -140,23 +141,7 @@ namespace IpPortEndpointCheck
                     string[] udpPorts = udpPortsTextBox.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
                     //goto stop
-                    m_tcpListeners.StopListen();
-
-                    TcpClients tclis = new TcpClients(IPAddress.Parse("127.0.0.1"));
-                    foreach (string item in tcpPorts)
-                    {
-                        tclis.AddPort(Convert.ToInt32(item));
-                    }
-                    tclis.StartConnect();
-
-                    List<int> exceptionalTcpPorts;
-                    while (!tclis.IsConnectFinished(out exceptionalTcpPorts))
-                    {
-                        Thread.Sleep(500);
-                    }
-
-                    m_tcpListeners.WaitListensStop();
-                    m_tcpListeners = null;
+                    CheckAsServer(tcpPorts, udpPorts);
                 }
             }
         }
@@ -351,10 +336,15 @@ namespace IpPortEndpointCheck
 
                 if (checkBoxUdp.Checked)
                 {
-                    //TODO: add udp functions
+                    Debug.Assert(null == m_udpServer);
+                    m_udpServer = new UdpServer();
+                    foreach (string item in udpPorts)
+                    {
+                        m_udpServer.AddPort(Convert.ToInt32(item));
+                    }
+                    m_udpServer.StartListen();
                 }
-            
-                
+                            
             }
             else
             {
@@ -382,7 +372,23 @@ namespace IpPortEndpointCheck
 
                 if (checkBoxUdp.Checked)
                 {
-                    //TODO: add udp functions
+                    m_udpServer.StopListen();
+
+                    UdpClients uclis = new UdpClients(IPAddress.Parse("127.0.0.1"));
+                    foreach (string item in udpPorts)
+                    {
+                        uclis.AddPort(Convert.ToInt32(item));
+                    }
+                    uclis.StartConnect();
+
+                    List<int> exceptionalTcpPorts;
+                    while (!uclis.IsConnectFinished(out exceptionalTcpPorts))
+                    {
+                        Thread.Sleep(500);
+                    }
+
+                    m_udpServer.WaitListensStop();
+                    m_udpServer = null;
                 }
             
 
