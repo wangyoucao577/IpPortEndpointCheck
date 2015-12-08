@@ -73,10 +73,8 @@ namespace IpPortEndpointCheck
             catch (SocketException ex)
             {
                 Trace.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
-                switch (ex.ErrorCode)
+                switch (ex.SocketErrorCode)
                 {
-                    case 10054:
-                        break;
                     default:
                         break;
                 }
