@@ -13,7 +13,7 @@ namespace IpPortEndpointCheck
     public partial class MainForm : Form
     {
         private TcpListeners m_tcpListeners = null;
-        private UdpServer m_udpServer = null;
+        private UdpServers m_udpServer = null;
 
         public MainForm()
         {
@@ -337,7 +337,7 @@ namespace IpPortEndpointCheck
                 if (checkBoxUdp.Checked)
                 {
                     Debug.Assert(null == m_udpServer);
-                    m_udpServer = new UdpServer();
+                    m_udpServer = new UdpServers();
                     foreach (string item in udpPorts)
                     {
                         m_udpServer.AddPort(Convert.ToInt32(item));

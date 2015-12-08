@@ -7,19 +7,19 @@ using System.Text;
 
 namespace IpPortEndpointCheck
 {
-    class UdpServer : NetCheckServers
+    class UdpServers : NetCheckServers
     {
         public override void StartListen()
         {
             base.StartListen();
 
-            DoStart(UdpServer.UdpReceiveThreadProc);
+            DoStart(UdpServers.UdpReceiveThreadProc);
         }
 
         static private void UdpReceiveThreadProc(object data)
         {
 
-            UdpServer udpServer = (UdpServer)data;
+            UdpServers udpServer = (UdpServers)data;
             int port = udpServer.PopPort();
 
 
