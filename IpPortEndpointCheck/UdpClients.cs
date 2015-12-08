@@ -14,7 +14,12 @@ namespace IpPortEndpointCheck
         {
         }
 
-        static public void UdpConnectThreadProc(object data)
+        public override void StartConnect()
+        {
+            DoStartConnect(UdpClients.UdpConnectThreadProc);
+        }
+
+        static private void UdpConnectThreadProc(object data)
         {
             UdpClients udpClients = (UdpClients)data;
             int port = udpClients.PopPort();

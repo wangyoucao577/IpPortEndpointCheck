@@ -14,7 +14,12 @@ namespace IpPortEndpointCheck
         {
         }
 
-        static public void TcpConnectThreadProc(object data)
+        public override void StartConnect()
+        {
+            DoStartConnect(TcpClients.TcpConnectThreadProc);
+        }
+
+        static private void TcpConnectThreadProc(object data)
         {
             TcpClients tcpClients = (TcpClients)data;
             int port = tcpClients.PopPort();

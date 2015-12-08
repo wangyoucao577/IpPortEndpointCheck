@@ -147,7 +147,7 @@ namespace IpPortEndpointCheck
                     {
                         tclis.AddPort(Convert.ToInt32(item));
                     }
-                    tclis.DoStartConnect(TcpClients.TcpConnectThreadProc);
+                    tclis.StartConnect();
 
                     List<int> exceptionalTcpPorts;
                     while (!tclis.IsConnectFinished(out exceptionalTcpPorts))
@@ -254,7 +254,7 @@ namespace IpPortEndpointCheck
                 {
                     tclis.AddPort(Convert.ToInt32(item));
                 }
-                tclis.DoStartConnect(TcpClients.TcpConnectThreadProc);
+                tclis.StartConnect();
 
                 List<int> exceptionalTcpPorts;
                 while (!tclis.IsConnectFinished(out exceptionalTcpPorts))
@@ -289,7 +289,7 @@ namespace IpPortEndpointCheck
                 {
                     tclis.AddPort(Convert.ToInt32(item));
                 }
-                tclis.DoStartConnect(UdpClients.UdpConnectThreadProc);
+                tclis.StartConnect();
 
                 List<int> exceptionalPorts;
                 while (!tclis.IsConnectFinished(out exceptionalPorts))
@@ -368,7 +368,7 @@ namespace IpPortEndpointCheck
                     {
                         tclis.AddPort(Convert.ToInt32(item));
                     }
-                    tclis.DoStartConnect(UdpClients.UdpConnectThreadProc);
+                    tclis.StartConnect();
 
                     List<int> exceptionalTcpPorts;
                     while (!tclis.IsConnectFinished(out exceptionalTcpPorts))
