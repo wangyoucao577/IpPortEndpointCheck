@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="IpPortEndpointCheck.MainForm" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JQQAAQKQAmhAgBAAAAi4EAACAAAwBAAAEHAgABgQgAM=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.NetClients" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAIAAEAQAAAAAEAEAMCAhAABgABAAAAFAAAAAAAA=</HashCode>
+      <FileName>NetClients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.Program" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.TcpClients">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>TcpClients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.TcpListeners" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAEAAAAAAgAAIQAAAAAAAAAAAAAAAAAAAAIQAAAAA=</HashCode>
+      <FileName>TcpListeners.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.UdpClients">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>UdpClients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.Properties.Resources" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.Properties.Settings" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
