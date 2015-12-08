@@ -99,7 +99,7 @@ namespace IpPortEndpointCheck
             return true;
         }
 
-        public void StartConnect(ParameterizedThreadStart start)
+        public void DoStartConnect(ParameterizedThreadStart start)
         {
             int count = m_portList.Count;
 
@@ -116,6 +116,5 @@ namespace IpPortEndpointCheck
                 m_connectThreadList.Add(threadId);
             }
         }
-
     }
 }
