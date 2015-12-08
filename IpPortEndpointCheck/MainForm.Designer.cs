@@ -48,11 +48,11 @@
             this.udpEmptyButton = new System.Windows.Forms.Button();
             this.udpCommonButton = new System.Windows.Forms.Button();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.checkBoxUdp = new System.Windows.Forms.CheckBox();
             this.checkBoxTcp = new System.Windows.Forms.CheckBox();
             this.timer2CheckServerException = new System.Windows.Forms.Timer(this.components);
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -243,11 +243,16 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 380);
+            this.statusStrip.Location = new System.Drawing.Point(0, 359);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(560, 22);
             this.statusStrip.TabIndex = 5;
             this.statusStrip.Text = "statusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // groupBox4
             // 
@@ -290,16 +295,11 @@
             // 
             this.timer2CheckServerException.Tick += new System.EventHandler(this.timer2CheckServerException_Tick);
             // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 402);
+            this.ClientSize = new System.Drawing.Size(560, 381);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.groupBox3);
@@ -308,11 +308,11 @@
             this.Controls.Add(this.startStopButton);
             this.Controls.Add(this.modeComboBox);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(576, 441);
-            this.MinimumSize = new System.Drawing.Size(576, 441);
+            this.MaximumSize = new System.Drawing.Size(576, 420);
+            this.MinimumSize = new System.Drawing.Size(576, 420);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FindPort";
+            this.Text = "Find Open Port";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
