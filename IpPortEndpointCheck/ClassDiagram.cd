@@ -3,7 +3,7 @@
   <Class Name="IpPortEndpointCheck.MainForm" Collapsed="true">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>JQQAAQKQAmhAgBAAAAi4EAACAAAwBAAAEHAgABgQgAM=</HashCode>
+      <HashCode>JQQAAQKQAmhAgBAAAAi4EAQCAAAwBAAAEHAgABgQgAM=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,7 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.TcpListeners">
-    <Position X="5.25" Y="6.5" Width="2.25" />
+    <Position X="5.25" Y="6.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TcpListeners.cs</FileName>
@@ -61,11 +61,11 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="IpPortEndpointCheck.UdpServer">
-    <Position X="8" Y="6.5" Width="2" />
+  <Class Name="IpPortEndpointCheck.UdpServers">
+    <Position X="7.75" Y="6.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>UdpServer.cs</FileName>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>UdpServers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
