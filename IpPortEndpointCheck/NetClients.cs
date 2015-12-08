@@ -9,6 +9,9 @@ namespace IpPortEndpointCheck
 {
     class NetClients
     {
+        protected const string kAskQuestion = "AreYouOk?";
+        protected const string kAnswer = "ImOk!";
+
         protected List<int> m_portList = new List<int>();
         protected object m_portListMutex = new object();
 

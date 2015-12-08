@@ -29,7 +29,7 @@ namespace IpPortEndpointCheck
             uSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
 
             //Send
-            Byte[] sendBytes = Encoding.ASCII.GetBytes("AreYouOk?");
+            Byte[] sendBytes = Encoding.ASCII.GetBytes(UdpClients.kAskQuestion);
             try
             {
                 ucli.Send(sendBytes, sendBytes.Length, new IPEndPoint(udpClients.TargetIP, port));
@@ -60,7 +60,7 @@ namespace IpPortEndpointCheck
                                             " on their port number " +
                                             RemoteIpEndPoint.Port.ToString());
 
-                if (returnData.ToString().Contains("ImOk!"))
+                if (returnData.ToString().Contains(UdpClients.kAnswer))
                 {
 
                 }

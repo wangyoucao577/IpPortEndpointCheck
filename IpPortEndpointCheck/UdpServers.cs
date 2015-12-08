@@ -44,9 +44,9 @@ namespace IpPortEndpointCheck
                                                 " on their port number " +
                                                 RemoteIpEndPoint.Port.ToString());
 
-                    if (returnData.ToString().Contains("AreYouOk?"))
+                    if (returnData.ToString().Contains(UdpServers.kAskQuestion))
                     {
-                        Byte[] sendBytes = Encoding.ASCII.GetBytes("ImOk!");
+                        Byte[] sendBytes = Encoding.ASCII.GetBytes(UdpServers.kAnswer);
                         ucli.Send(sendBytes, sendBytes.Length, RemoteIpEndPoint);
                     }
                     
