@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpPortEndpointCheck</RootNamespace>
-    <AssemblyName>IpPortEndpointCheck</AssemblyName>
+    <AssemblyName>FindOpenPort</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
