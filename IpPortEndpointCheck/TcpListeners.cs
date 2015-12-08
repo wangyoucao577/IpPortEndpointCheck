@@ -8,39 +8,14 @@ using System.Net;
 
 namespace IpPortEndpointCheck
 {
-    class TcpListeners
+    class TcpListeners : NetClients
     {
-        private List<int> m_tcpPortList = new List<int>();
-        private object m_portListMutex = new object();
-
         private List<Thread> m_listenThreadList = new List<Thread>();
 
         private bool m_goonListen = true;
         private object m_goonListenMutex = new object();
 
-        public bool AddPort(int tcpPort)
-        {
-            Debug.Assert(tcpPort >= 0 && tcpPort < 65536);
-
-            lock (m_portListMutex)
-            {
-                m_tcpPortList.Add(tcpPort);
-            }
-
-            return true;
-        }
-
-        public int PopPort()
-        {
-            int port = 0;
-            lock (m_portListMutex)
-            {
-                port = m_tcpPortList[0];
-                m_tcpPortList.RemoveAt(0);
-            }
-
-            return port;
-        }
+        public TcpListeners() : base(null) { }
 
         public bool StartListen()
         {
@@ -49,7 +24,7 @@ namespace IpPortEndpointCheck
                 m_goonListen = true;
             }
 
-            int count = m_tcpPortList.Count;
+            int count = m_portList.Count;
 
             for (int i = 0; i < count; i++)
             {
