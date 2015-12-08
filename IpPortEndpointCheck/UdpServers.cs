@@ -60,6 +60,7 @@ namespace IpPortEndpointCheck
                 switch (ex.SocketErrorCode)
                 {
                     case SocketError.AddressAlreadyInUse:
+                        udpServer.AddExceptionalPort(port);
                         break;
                     default:
                         Trace.WriteLine(ex.ToString());

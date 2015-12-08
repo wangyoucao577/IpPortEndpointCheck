@@ -40,9 +40,10 @@ namespace IpPortEndpointCheck
             }
             catch (SocketException ex)
             {
-                switch (ex.ErrorCode)
+                switch (ex.SocketErrorCode)
                 {
-                    case 10048:
+                    case SocketError.AddressAlreadyInUse:
+                        tcpListener.AddExceptionalPort(port);
                         break;
                     default:
                         Debug.Assert(false);
