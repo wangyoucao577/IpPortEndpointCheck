@@ -11,13 +11,11 @@ namespace IpPortEndpointCheck
     class TcpListeners : NetCheckServers
     {
 
-        public bool StartListen()
+        public override void StartListen()
         {
-            GoonListen = true;
+            base.StartListen();
 
             DoStart(TcpListeners.TcpListenerThreadProc);
-
-            return true;
         }
 
         static private void TcpListenerThreadProc(object data)

@@ -34,7 +34,12 @@ namespace IpPortEndpointCheck
             }
         }
 
-        public void StopListen()
+        public virtual void StartListen()
+        {
+            GoonListen = true;
+        }
+
+        public virtual void StopListen()
         {
             GoonListen = false;
         }
