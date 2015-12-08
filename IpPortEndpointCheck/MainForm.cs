@@ -421,7 +421,7 @@ namespace IpPortEndpointCheck
                         udpPortsTipText += item.ToString();
                         udpPortsTipText += " ";
                     }
-                    udpPortsTipText += "Already In Use!";
+                    udpPortsTipText += "Already In Use, so that can NOT be checked!";
                     toolStripStatusLabel.Text = udpPortsTipText;
                 }
             }
