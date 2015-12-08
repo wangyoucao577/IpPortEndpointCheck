@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IpPortEndpointCheck.MainForm" Collapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="IpPortEndpointCheck.MainForm">
+    <Position X="11" Y="0.5" Width="4.75" />
     <TypeIdentifier>
       <HashCode>JQQAAQKQAmhAgBAAAAi4EAQCAAAwBAAAEHAgABgQgAM=</HashCode>
       <FileName>MainForm.cs</FileName>
@@ -17,7 +17,7 @@
   <Class Name="IpPortEndpointCheck.NetClients">
     <Position X="1.25" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AABAAIAAEAQAAAAAEAEAMCAhAABgABAAAAFAAAAAAAA=</HashCode>
+      <HashCode>AABAAIAAEAQAAAAAEAEAMCAhBABgABAAAAFAAAAAAAA=</HashCode>
       <FileName>NetClients.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,13 +50,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.Properties.Resources" Collapsed="true">
-    <Position X="7.5" Y="1.5" Width="1.5" />
+    <Position X="7.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.Properties.Settings" Collapsed="true">
-    <Position X="9.25" Y="1.5" Width="1.5" />
+    <Position X="7.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
