@@ -13,12 +13,7 @@ namespace IpPortEndpointCheck
 
         public bool StartListen()
         {
-            lock (m_goonListenMutex)
-            {
-                m_goonListen = true;
-            }
-
-            int count = m_portList.Count;
+            GoonListen = true;
 
             DoStart(TcpListeners.TcpListenerThreadProc);
 
@@ -37,7 +32,7 @@ namespace IpPortEndpointCheck
             {
                 listener.Start();
 
-                while (tcpListener.GoonListening())
+                while (tcpListener.GoonListen)
                 {
                     TcpClient cli = listener.AcceptTcpClient();
                     cli.Close();

@@ -15,12 +15,28 @@ namespace IpPortEndpointCheck
 
         public NetCheckServers() : base(null) { }
 
+        protected bool GoonListen
+        {
+            get
+            {
+                lock (m_goonListenMutex)
+                {
+                    return m_goonListen;
+                }
+            }
+
+            set
+            {
+                lock (m_goonListenMutex)
+                {
+                    m_goonListen = value;
+                }
+            }
+        }
+
         public void StopListen()
         {
-            lock (m_goonListenMutex)
-            {
-                m_goonListen = false;
-            }
+            GoonListen = false;
         }
 
         public void WaitListensStop()
@@ -28,15 +44,6 @@ namespace IpPortEndpointCheck
             foreach (Thread item in m_threadList)
             {
                 item.Join();
-            }
-        }
-
-
-        protected bool GoonListening()
-        {
-            lock (m_goonListenMutex)
-            {
-                return m_goonListen;
             }
         }
 
