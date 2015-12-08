@@ -10,8 +10,6 @@ namespace IpPortEndpointCheck
 {
     class TcpListeners : NetClients
     {
-        private List<Thread> m_listenThreadList = new List<Thread>();
-
         private bool m_goonListen = true;
         private object m_goonListenMutex = new object();
 
@@ -31,7 +29,7 @@ namespace IpPortEndpointCheck
                 Thread threadId = new Thread(TcpListeners.TcpListenerThreadProc);
                 threadId.Start((object)this);
 
-                m_listenThreadList.Add(threadId);
+                m_threadList.Add(threadId);
             }
 
             return true;
@@ -46,7 +44,7 @@ namespace IpPortEndpointCheck
 
         public void WaitListensStop()
         {
-            foreach (Thread item in m_listenThreadList)
+            foreach (Thread item in m_threadList)
             {
                 item.Join();
             }

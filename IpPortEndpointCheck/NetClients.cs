@@ -15,7 +15,7 @@ namespace IpPortEndpointCheck
         protected List<int> m_exceptionalPortList = new List<int>();
         protected object m_exceptionalPortListMutex = new object();
 
-        protected List<Thread> m_connectThreadList = new List<Thread>();
+        protected List<Thread> m_threadList = new List<Thread>();
 
         protected int m_connecting = 0;
         protected object m_connectingMutex = new object();
@@ -112,7 +112,7 @@ namespace IpPortEndpointCheck
                 Thread threadId = new Thread(start);
                 threadId.Start((object)this);
 
-                m_connectThreadList.Add(threadId);
+                m_threadList.Add(threadId);
             }
         }
 
