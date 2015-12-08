@@ -22,17 +22,14 @@ namespace IpPortEndpointCheck
             UdpServers udpServer = (UdpServers)data;
             int port = udpServer.PopPort();
 
-
-            UdpClient ucli = new UdpClient(port);
-            Socket uSocket = ucli.Client;
-
-
             //Receive
             //Creates an IPEndPoint to record the IP Address and port number of the sender. 
             // The IPEndPoint will allow you to read datagrams sent from any source.
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
             try
             {
+                UdpClient ucli = new UdpClient(port);
+
                 while (udpServer.GoonListen)
                 {
                     // Blocks until a message returns on this socket from a remote host.
@@ -60,11 +57,13 @@ namespace IpPortEndpointCheck
             catch (SocketException ex)
             {
                 Trace.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
-                switch (ex.ErrorCode)
+                switch (ex.SocketErrorCode)
                 {
-                    case 10054:
+                    case SocketError.AddressAlreadyInUse:
                         break;
                     default:
+                        Trace.WriteLine(ex.ToString());
+                        Debug.Assert(false);
                         break;
                 }
             }
