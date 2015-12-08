@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 
 namespace IpPortEndpointCheck
@@ -15,39 +18,63 @@ namespace IpPortEndpointCheck
 
         static private void UdpReceiveThreadProc(object data)
         {
-            //TODO: add udp function here
 
-            //TcpListeners tcpListener = (TcpListeners)data;
-            //int port = tcpListener.PopPort();
+            UdpServer udpServer = (UdpServer)data;
+            int port = udpServer.PopPort();
 
 
-            //TcpListener listener = new TcpListener(IPAddress.Any, port);
+            UdpClient ucli = new UdpClient(port);
+            Socket uSocket = ucli.Client;
 
-            //try
-            //{
-            //    listener.Start();
 
-            //    while (tcpListener.GoonListen)
-            //    {
-            //        TcpClient cli = listener.AcceptTcpClient();
-            //        cli.Close();
-            //    }
+            //Receive
+            //Creates an IPEndPoint to record the IP Address and port number of the sender. 
+            // The IPEndPoint will allow you to read datagrams sent from any source.
+            IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            try
+            {
+                while (udpServer.GoonListen)
+                {
+                    // Blocks until a message returns on this socket from a remote host.
+                    Byte[] receiveBytes = ucli.Receive(ref RemoteIpEndPoint);
 
-            //    listener.Stop();
-            //}
-            //catch (SocketException ex)
-            //{
-            //    switch (ex.ErrorCode)
-            //    {
-            //        case 10048:
-            //            break;
-            //        default:
-            //            Debug.Assert(false);
-            //            break;
-            //    }
-            //}
+                    string returnData = Encoding.ASCII.GetString(receiveBytes);
 
-            //tcpListener.DoDecrease();
+                    Trace.WriteLine("This is the message you received :" +
+                                                 returnData.ToString());
+                    Trace.WriteLine("This message was sent from " +
+                                                RemoteIpEndPoint.Address.ToString() +
+                                                " on their port number " +
+                                                RemoteIpEndPoint.Port.ToString());
+
+                    if (returnData.ToString().Contains("AreYouOk?"))
+                    {
+                        Byte[] sendBytes = Encoding.ASCII.GetBytes("ImOk!");
+                        ucli.Send(sendBytes, sendBytes.Length, RemoteIpEndPoint);
+                    }
+                    
+                }
+
+                ucli.Close();
+            }
+            catch (SocketException ex)
+            {
+                Trace.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
+                switch (ex.ErrorCode)
+                {
+                    case 10054:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e.ToString());
+                Debug.Assert(false);
+            }
+
+            udpServer.DoDecrease();
         }
     }
 }
