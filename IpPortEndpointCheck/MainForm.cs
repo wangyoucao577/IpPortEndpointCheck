@@ -14,6 +14,7 @@ namespace IpPortEndpointCheck
     {
         private TcpListeners m_tcpListeners = null;
         private UdpServers m_udpServer = null;
+        private List<int> m_udpServersExceptionPortList = null;
 
         public MainForm()
         {
@@ -346,12 +347,14 @@ namespace IpPortEndpointCheck
                     m_udpServer.StartListen();
                 }
 
+                m_udpServersExceptionPortList = null;
                 timer2CheckServerException.Enabled = true;
             }
             else
             {
                 //goto stop
                 timer2CheckServerException.Enabled = false;
+                m_udpServersExceptionPortList = null;
 
                 if (checkBoxTcp.Checked)
                 {
@@ -415,14 +418,25 @@ namespace IpPortEndpointCheck
                 List<int> udpExceptionPortList = m_udpServer.ExceptionPortList;
                 if (udpExceptionPortList.Count > 0)
                 {
-                    string udpPortsTipText = "Warning: UDP Port ";
-                    foreach (int item in udpExceptionPortList)
+                    bool exceptionPortsUpdate = false;
+                    if (m_udpServersExceptionPortList == null || udpExceptionPortList.Count > m_udpServersExceptionPortList.Count)
                     {
-                        udpPortsTipText += item.ToString();
-                        udpPortsTipText += " ";
+                        m_udpServersExceptionPortList = udpExceptionPortList;
+                        exceptionPortsUpdate = true;
                     }
-                    udpPortsTipText += "Already In Use, so that can NOT be checked!";
-                    toolStripStatusLabel.Text = udpPortsTipText;
+
+                    if (exceptionPortsUpdate)
+                    {
+                        string udpPortsTipText = "Warning: UDP Port ";
+                        foreach (int item in udpExceptionPortList)
+                        {
+                            udpPortsTipText += item.ToString();
+                            udpPortsTipText += " ";
+                        }
+                        udpPortsTipText += "Already In Use, so that can NOT be checked!";
+
+                        toolStripStatusLabel.Text = udpPortsTipText;
+                    }
                 }
             }
         }
