@@ -13,7 +13,7 @@ namespace IpPortEndpointCheck
     public partial class MainForm : Form
     {
         private TcpListeners m_tcpListeners = null;
-        private UdpServers m_udpServer = null;
+        private UdpServers m_udpServers = null;
         private List<int> m_udpServersExceptionPortList = null;
 
         public MainForm()
@@ -338,13 +338,13 @@ namespace IpPortEndpointCheck
 
                 if (checkBoxUdp.Checked)
                 {
-                    Debug.Assert(null == m_udpServer);
-                    m_udpServer = new UdpServers();
+                    Debug.Assert(null == m_udpServers);
+                    m_udpServers = new UdpServers();
                     foreach (string item in udpPorts)
                     {
-                        m_udpServer.AddPort(Convert.ToInt32(item));
+                        m_udpServers.AddPort(Convert.ToInt32(item));
                     }
-                    m_udpServer.StartListen();
+                    m_udpServers.StartListen();
                 }
 
                 m_udpServersExceptionPortList = null;
@@ -379,7 +379,7 @@ namespace IpPortEndpointCheck
 
                 if (checkBoxUdp.Checked)
                 {
-                    m_udpServer.StopListen();
+                    m_udpServers.StopListen();
 
                     UdpClients uclis = new UdpClients(IPAddress.Parse("127.0.0.1"));
                     foreach (string item in udpPorts)
@@ -394,8 +394,8 @@ namespace IpPortEndpointCheck
                         Thread.Sleep(500);
                     }
 
-                    m_udpServer.WaitListensStop();
-                    m_udpServer = null;
+                    m_udpServers.WaitListensStop();
+                    m_udpServers = null;
                 }
             
 
@@ -415,7 +415,7 @@ namespace IpPortEndpointCheck
             //UDP
             if (checkBoxUdp.Checked)
             {
-                List<int> udpExceptionPortList = m_udpServer.ExceptionPortList;
+                List<int> udpExceptionPortList = m_udpServers.ExceptionPortList;
                 if (udpExceptionPortList.Count > 0)
                 {
                     bool exceptionPortsUpdate = false;
