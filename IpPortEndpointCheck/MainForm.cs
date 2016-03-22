@@ -440,5 +440,10 @@ namespace IpPortEndpointCheck
                 }
             }
         }
+
+        private void udpEmptyButton_Click(object sender, EventArgs e)
+        {
+            udpPortsTextBox.Text = null;
+        }
     }
 }

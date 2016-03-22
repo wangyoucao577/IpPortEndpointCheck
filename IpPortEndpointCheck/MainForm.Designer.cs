@@ -228,6 +228,7 @@
             this.udpEmptyButton.TabIndex = 1;
             this.udpEmptyButton.Text = "Empty";
             this.udpEmptyButton.UseVisualStyleBackColor = true;
+            this.udpEmptyButton.Click += new System.EventHandler(this.udpEmptyButton_Click);
             // 
             // udpCommonButton
             // 
