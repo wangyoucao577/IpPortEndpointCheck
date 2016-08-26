@@ -316,7 +316,7 @@
             this.MinimumSize = new System.Drawing.Size(576, 420);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Find Open Port";
+            this.Text = "Find Open Port  " + ProductVersion;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
