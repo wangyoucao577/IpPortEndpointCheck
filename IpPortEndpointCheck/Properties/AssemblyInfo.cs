@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些属性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("Find Open Port")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A tiny tool to check whether tcp or udp port opened.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Find Open Port")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("Copyright (C) 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
