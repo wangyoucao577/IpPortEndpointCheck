@@ -19,6 +19,7 @@ namespace IpPortEndpointCheck
         public MainForm()
         {
             InitializeComponent();
+            this.Text = ProductName + "  " + ProductVersion;
         }
 
         private void button1_Click(object sender, EventArgs e)
