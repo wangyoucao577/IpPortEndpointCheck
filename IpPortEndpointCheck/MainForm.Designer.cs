@@ -166,7 +166,7 @@
             this.tcpCommonButton.Name = "tcpCommonButton";
             this.tcpCommonButton.Size = new System.Drawing.Size(94, 66);
             this.tcpCommonButton.TabIndex = 1;
-            this.tcpCommonButton.Text = "22000,22001,\r\n22002,22006,\r\n22010,22048\r\n";
+            this.tcpCommonButton.Text = "80\r\n3389";
             this.tcpCommonButton.UseVisualStyleBackColor = true;
             this.tcpCommonButton.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -236,7 +236,7 @@
             this.udpCommonButton.Name = "udpCommonButton";
             this.udpCommonButton.Size = new System.Drawing.Size(94, 66);
             this.udpCommonButton.TabIndex = 1;
-            this.udpCommonButton.Text = "22048";
+            this.udpCommonButton.Text = "5060";
             this.udpCommonButton.UseVisualStyleBackColor = true;
             this.udpCommonButton.Click += new System.EventHandler(this.udpCommonButton_Click);
             // 
@@ -316,7 +316,7 @@
             this.MinimumSize = new System.Drawing.Size(576, 420);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Find Open Port  " + ProductVersion;
+            this.Text = "Find Open Port  4.6.1038.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);

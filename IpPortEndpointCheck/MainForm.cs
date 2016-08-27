@@ -76,12 +76,8 @@ namespace IpPortEndpointCheck
 
         private void button2_Click(object sender, EventArgs e)
         {
-            appendTcpPort("22000");
-            appendTcpPort("22001");
-            appendTcpPort("22002");
-            appendTcpPort("22006");
-            appendTcpPort("22010");
-            appendTcpPort("22048");
+            appendTcpPort("80");
+            appendTcpPort("3389");
         }
 
         private void modeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,7 +200,7 @@ namespace IpPortEndpointCheck
 
         private void udpCommonButton_Click(object sender, EventArgs e)
         {
-            appendUdpPort("22048");
+            appendUdpPort("5060");
         }
 
         private void udpPortAddButton_Click(object sender, EventArgs e)
