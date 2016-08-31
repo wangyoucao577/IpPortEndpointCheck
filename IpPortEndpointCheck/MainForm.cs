@@ -237,6 +237,8 @@ namespace IpPortEndpointCheck
             string showText = null;
             if (checkBoxTcp.Checked)
             {
+                ThreadSafePushNewMessage("Start as Tcp Client, Peer IP " + ip.ToString() +  " Tcp ports " + String.Join(" ", tcpPorts));
+
                 TcpClients tclis = new TcpClients(ip);
                 foreach (string item in tcpPorts)
                 {
@@ -270,6 +272,8 @@ namespace IpPortEndpointCheck
 
             if (checkBoxUdp.Checked)
             {
+                ThreadSafePushNewMessage("Start as Tcp Client, Peer IP " + ip.ToString() + " Udp ports " + String.Join(" ", udpPorts));
+
                 showText += "\nUDP Ports ";
 
                 UdpClients tclis = new UdpClients(ip);
@@ -317,6 +321,7 @@ namespace IpPortEndpointCheck
             if (startStopButton.Text.Equals("Start"))
             {
                 //goto start
+                ThreadSafePushNewMessage("Start as Server, Tcp ports " + String.Join(" ", tcpPorts) + " Udp ports " + String.Join(" ", udpPorts));
 
                 startStopButton.Text = "Stop";
 
@@ -356,6 +361,8 @@ namespace IpPortEndpointCheck
             else
             {
                 //goto stop
+                ThreadSafePushNewMessage("Stop Server.");
+
                 timer2CheckServerException.Enabled = false;
                 m_udpServersExceptionPortList = null;
 
@@ -460,15 +467,8 @@ namespace IpPortEndpointCheck
             NetClients cl = (NetClients)sub;
             string msg = cl.GetNextMessage();
             Trace.WriteLine("Observer : " + msg);
-            
-            lock (m_msgFormMutex)
-            {
-                if (m_msgForm != null && m_msgForm.Visible == true)
-                {
-                    m_msgForm.PushNewMessage(msg);
-                }
-            }
-            
+
+            ThreadSafePushNewMessage(msg);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -487,6 +487,17 @@ namespace IpPortEndpointCheck
                 m_msgForm = new MessageForm();
                 m_msgForm.Show();
 
+            }
+        }
+
+        private void ThreadSafePushNewMessage(string msg)
+        {
+            lock (m_msgFormMutex)
+            {
+                if (m_msgForm != null && m_msgForm.Visible == true)
+                {
+                    m_msgForm.PushNewMessage(msg);
+                }
             }
         }
     }
