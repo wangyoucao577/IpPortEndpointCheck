@@ -1,72 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IpPortEndpointCheck.MainForm">
-    <Position X="11" Y="0.5" Width="4.75" />
+  <Class Name="IpPortEndpointCheck.MainForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>JQQAAQKQAmhAgBAAAAi4EAQCAAAwBAAAEHAgABgQgAM=</HashCode>
+      <HashCode>JQQAAQKQAmpAgBAAABi4MAQCAAAwBAgAEHAgABgQgAM=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="IpPortEndpointCheck.NetCheckServers">
-    <Position X="5.25" Y="3" Width="3.75" />
+  <Class Name="IpPortEndpointCheck.NetCheckServers" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAEAAAAAAgAAIAAAAAAAAAAAAAAAAAAAAAAQAIAAA=</HashCode>
       <FileName>NetCheckServers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.NetClients">
-    <Position X="1.25" Y="0.5" Width="2.5" />
+    <Position X="1" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AABAAIAAEAQAAAAAEAEAMCAhBABgABAAAAFAAAAAAAA=</HashCode>
+      <HashCode>AABAAIAAEAQAAAAAEAEgMCAjBABgABAAAAFgQAAAAAA=</HashCode>
       <FileName>NetClients.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.Program" Collapsed="true">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.TcpClients">
-    <Position X="2.75" Y="6.5" Width="2" />
+    <Position X="0.5" Y="7.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>TcpClients.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.TcpListeners">
-    <Position X="5.25" Y="6.75" Width="2.25" />
+    <Position X="8.25" Y="5.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TcpListeners.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IpPortEndpointCheck.UdpClients">
-    <Position X="0.5" Y="6.5" Width="2" />
+    <Position X="3" Y="7.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>UdpClients.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IpPortEndpointCheck.Properties.Resources" Collapsed="true">
-    <Position X="7.25" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="IpPortEndpointCheck.Properties.Settings" Collapsed="true">
-    <Position X="7.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-  </Class>
   <Class Name="IpPortEndpointCheck.UdpServers">
-    <Position X="7.75" Y="6.75" Width="2.5" />
+    <Position X="5.5" Y="5.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>UdpServers.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Observer.Subject">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAACIAAAABAAAAAAAAQAAA=</HashCode>
+      <FileName>Subject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.Properties.Resources" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IpPortEndpointCheck.Properties.Settings" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Observer.IObserver">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
