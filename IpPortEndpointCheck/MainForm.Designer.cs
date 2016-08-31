@@ -147,6 +147,7 @@
             this.tcpPortsTextBox.Multiline = true;
             this.tcpPortsTextBox.Name = "tcpPortsTextBox";
             this.tcpPortsTextBox.ReadOnly = true;
+            this.tcpPortsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tcpPortsTextBox.Size = new System.Drawing.Size(76, 131);
             this.tcpPortsTextBox.TabIndex = 2;
             // 
@@ -217,6 +218,7 @@
             this.udpPortsTextBox.Multiline = true;
             this.udpPortsTextBox.Name = "udpPortsTextBox";
             this.udpPortsTextBox.ReadOnly = true;
+            this.udpPortsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.udpPortsTextBox.Size = new System.Drawing.Size(76, 131);
             this.udpPortsTextBox.TabIndex = 2;
             // 
