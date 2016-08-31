@@ -125,7 +125,11 @@ namespace IpPortEndpointCheck
         {
             lock (m_exceptionalPortListMutex)
             {
-                m_exceptionalPortList.Add(port);
+                if (!m_exceptionalPortList.Contains(port))
+                {
+                    //server模式下同时监听ipv4和ipv6的指定该端口，故可能同时会加入，没必要重复
+                    m_exceptionalPortList.Add(port);
+                }
             }
 
             return true;
