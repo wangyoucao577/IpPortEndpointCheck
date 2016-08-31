@@ -12,6 +12,9 @@ namespace IpPortEndpointCheck
 {
     public partial class MainForm : Form, Observer.IObserver
     {
+        MessageForm m_msgForm = null;
+        private object m_msgFormMutex = new object();
+
         private TcpListeners m_tcpListeners = null;
         private UdpServers m_udpServers = null;
         private List<int> m_udpServersExceptionPortList = null;
@@ -20,6 +23,7 @@ namespace IpPortEndpointCheck
         {
             InitializeComponent();
             this.Text = ProductName + "  " + ProductVersion;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -454,7 +458,36 @@ namespace IpPortEndpointCheck
         public void Update(object sub)
         {
             NetClients cl = (NetClients)sub;
-            Trace.WriteLine("Observer : " + cl.GetNextMessage());
+            string msg = cl.GetNextMessage();
+            Trace.WriteLine("Observer : " + msg);
+            
+            lock (m_msgFormMutex)
+            {
+                if (m_msgForm != null && m_msgForm.Visible == true)
+                {
+                    m_msgForm.PushNewMessage(msg);
+                }
+            }
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            lock (m_msgFormMutex)
+            {
+                if (m_msgForm != null)
+                {
+                    if (m_msgForm.Visible == true)
+                    {
+                        return;
+                    }
+                    m_msgForm = null;
+                }
+
+                m_msgForm = new MessageForm();
+                m_msgForm.Show();
+
+            }
         }
     }
 }
