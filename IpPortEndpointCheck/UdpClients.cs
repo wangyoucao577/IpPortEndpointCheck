@@ -59,8 +59,10 @@ namespace IpPortEndpointCheck
 
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
 
-                Trace.WriteLine("(UDP Client Received) LocalEndPoint {" + ucli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
-                    + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}");
+                string msg = "(UDP Client Received) LocalEndPoint {" + ucli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
+                    + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}";
+                Trace.WriteLine(msg);
+                udpClients.AppendMessage(msg);
 
                 ucli.Close();
 

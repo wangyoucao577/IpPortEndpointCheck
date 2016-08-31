@@ -37,8 +37,11 @@ namespace IpPortEndpointCheck
 
                     string returnData = Encoding.ASCII.GetString(receiveBytes);
 
-                    Trace.WriteLine("(UDP Server Received) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
-                        + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}");
+                    string msg = "(UDP Server Received) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
+                        + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}";
+                    Trace.WriteLine(msg);
+                    udpServer.AppendMessage(msg);
+
                     //Trace.WriteLine("This is the message you received :" +
                     //                            returnData.ToString());
 

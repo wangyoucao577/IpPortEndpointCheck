@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace IpPortEndpointCheck
 {
-    class NetClients
+    class NetClients : Observer.Subject
     {
         protected const string kAskQuestion = "AreYouOk?";
         protected const string kAnswer = "ImOk!";
@@ -17,6 +17,9 @@ namespace IpPortEndpointCheck
 
         protected List<int> m_exceptionalPortList = new List<int>();
         protected object m_exceptionalPortListMutex = new object();
+
+        protected List<string> m_messageList = new List<string>();
+        protected object m_messageListMutex = new object();
 
         protected List<Thread> m_threadList = new List<Thread>();
 
@@ -38,6 +41,25 @@ namespace IpPortEndpointCheck
                     return m_exceptionalPortList;
                 }
             }
+        }
+    
+        public string GetNextMessage()
+        {
+            lock (m_messageListMutex)
+            {
+                string msg = m_messageList[0];
+                m_messageList.RemoveAt(0);
+                return msg;
+            }
+        }
+
+        public void AppendMessage(string msg)
+        {
+            lock (m_messageListMutex)
+            {
+                m_messageList.Add(msg);
+            }
+            Notify();
         }
 
         protected NetClients(IPAddress ip)

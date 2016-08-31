@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace IpPortEndpointCheck
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, Observer.IObserver
     {
         private TcpListeners m_tcpListeners = null;
         private UdpServers m_udpServers = null;
@@ -234,6 +234,7 @@ namespace IpPortEndpointCheck
             if (checkBoxTcp.Checked)
             {
                 TcpClients tclis = new TcpClients(ip);
+                tclis.Attach(this);
                 foreach (string item in tcpPorts)
                 {
                     tclis.AddPort(Convert.ToInt32(item));
@@ -269,6 +270,7 @@ namespace IpPortEndpointCheck
                 showText += "\nUDP Ports ";
 
                 UdpClients tclis = new UdpClients(ip);
+                tclis.Attach(this);
                 foreach (string item in udpPorts)
                 {
                     tclis.AddPort(Convert.ToInt32(item));
@@ -326,6 +328,7 @@ namespace IpPortEndpointCheck
                 {
                     Debug.Assert(null == m_tcpListeners);
                     m_tcpListeners = new TcpListeners();
+                    m_tcpListeners.Attach(this);
                     foreach (string item in tcpPorts)
                     {
                         m_tcpListeners.AddPort(Convert.ToInt32(item));
@@ -337,6 +340,7 @@ namespace IpPortEndpointCheck
                 {
                     Debug.Assert(null == m_udpServers);
                     m_udpServers = new UdpServers();
+                    m_udpServers.Attach(this);
                     foreach (string item in udpPorts)
                     {
                         m_udpServers.AddPort(Convert.ToInt32(item));
@@ -447,6 +451,12 @@ namespace IpPortEndpointCheck
         private void udpEmptyButton_Click(object sender, EventArgs e)
         {
             udpPortsTextBox.Text = null;
+        }
+
+        public void Update(object sub)
+        {
+            NetClients cl = (NetClients)sub;
+            Trace.WriteLine("Observer : " + cl.GetNextMessage());
         }
     }
 }

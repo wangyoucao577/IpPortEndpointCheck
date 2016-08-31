@@ -34,8 +34,10 @@ namespace IpPortEndpointCheck
                 {
                     TcpClient cli = listener.AcceptTcpClient();
 
-                    Trace.WriteLine("(TCP Accepted) LocalEndPoint {" + cli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
-                        + cli.Client.RemoteEndPoint.ToString() + "}");
+                    string msg = "(TCP Accepted) LocalEndPoint {" + cli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
+                        + cli.Client.RemoteEndPoint.ToString() + "}";
+                    Trace.WriteLine(msg);
+                    tcpListener.AppendMessage(msg);
 
                     cli.Close();
                 }
