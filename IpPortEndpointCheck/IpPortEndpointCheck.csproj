@@ -65,8 +65,10 @@
     </Compile>
     <Compile Include="NetCheckServers.cs" />
     <Compile Include="NetClients.cs" />
+    <Compile Include="Observer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subject.cs" />
     <Compile Include="UdpClients.cs" />
     <Compile Include="UdpServers.cs" />
     <EmbeddedResource Include="MainForm.resx">
