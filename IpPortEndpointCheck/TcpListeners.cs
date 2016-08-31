@@ -34,7 +34,7 @@ namespace IpPortEndpointCheck
                 {
                     TcpClient cli = listener.AcceptTcpClient();
 
-                    string msg = "(TCP Accepted) LocalEndPoint {" + cli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
+                    string msg = "(TCP Listener: Accepted) LocalEndPoint {" + cli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
                         + cli.Client.RemoteEndPoint.ToString() + "}";
                     Trace.WriteLine(msg);
 
@@ -52,6 +52,10 @@ namespace IpPortEndpointCheck
                 switch (ex.SocketErrorCode)
                 {
                     case SocketError.AddressAlreadyInUse:
+                        string msg = "(TCP Listener: AddressAlreadyInUse) LocalEndPoint {" + localEndpoint.ToString() + "}";
+                        Trace.WriteLine(msg);
+                        tcpListener.AppendMessage(msg);
+
                         tcpListener.AddExceptionalPort(localEndpoint.Port);
                         break;
                     default:

@@ -37,7 +37,7 @@ namespace IpPortEndpointCheck
 
                     string returnData = Encoding.ASCII.GetString(receiveBytes);
 
-                    string msg = "(UDP Server Received) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
+                    string msg = "(UDP Server: Received) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
                         + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}";
                     Trace.WriteLine(msg);
 
@@ -68,6 +68,10 @@ namespace IpPortEndpointCheck
                 switch (ex.SocketErrorCode)
                 {
                     case SocketError.AddressAlreadyInUse:
+                        string msg = "(UDP Server: AddressAlreadyInUse) LocalEndPoint {" + localEndpoint.ToString() + "}";
+                        Trace.WriteLine(msg);
+                        udpServer.AppendMessage(msg);
+
                         udpServer.AddExceptionalPort(localEndpoint.Port);
                         break;
                     default:
