@@ -56,16 +56,21 @@ namespace IpPortEndpointCheck
 
                 // Blocks until a message returns on this socket from a remote host.
                 Byte[] receiveBytes = ucli.Receive(ref RemoteIpEndPoint);
-                ucli.Close();
 
                 string returnData = Encoding.ASCII.GetString(receiveBytes);
 
-                Trace.WriteLine("This is the message you received :" +
-                                             returnData.ToString());
-                Trace.WriteLine("This message was sent from " +
-                                            RemoteIpEndPoint.Address.ToString() +
-                                            " on their port number " +
-                                            RemoteIpEndPoint.Port.ToString());
+                Trace.WriteLine("(UDP Client Received) LocalEndPoint {" + ucli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
+                    + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}");
+
+                ucli.Close();
+
+
+                //Trace.WriteLine("This is the message you received :" +
+                //                             returnData.ToString());
+                //Trace.WriteLine("This message was sent from " +
+                //                            RemoteIpEndPoint.Address.ToString() +
+                //                            " on their port number " +
+                //                            RemoteIpEndPoint.Port.ToString());
 
                 if (returnData.ToString().Contains(UdpClients.kAnswer))
                 {
