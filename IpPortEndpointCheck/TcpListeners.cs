@@ -38,10 +38,8 @@ namespace IpPortEndpointCheck
                         + cli.Client.RemoteEndPoint.ToString() + "}";
                     Trace.WriteLine(msg);
 
-                    if (tcpListener.GoonListen)
-                    {
-                        tcpListener.AppendMessage(msg);
-                    }
+                    tcpListener.AppendMessage(msg);
+                    
                     
 
                     cli.Close();

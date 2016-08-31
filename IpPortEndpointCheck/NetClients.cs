@@ -53,13 +53,13 @@ namespace IpPortEndpointCheck
             }
         }
 
-        public void AppendMessage(string msg)
+        public virtual void AppendMessage(string msg)
         {
             lock (m_messageListMutex)
             {
                 m_messageList.Add(msg);
             }
-            Notify();
+            
         }
 
         protected NetClients(IPAddress ip)

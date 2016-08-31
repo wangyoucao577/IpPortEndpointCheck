@@ -41,10 +41,7 @@ namespace IpPortEndpointCheck
                         + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}";
                     Trace.WriteLine(msg);
 
-                    if (udpServer.GoonListen)
-                    {
-                        udpServer.AppendMessage(msg);
-                    }
+                    udpServer.AppendMessage(msg);
                     
 
                     //Trace.WriteLine("This is the message you received :" +

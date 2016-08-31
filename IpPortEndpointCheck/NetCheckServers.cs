@@ -44,6 +44,16 @@ namespace IpPortEndpointCheck
             GoonListen = false;
         }
 
+        public override void AppendMessage(string msg)
+        {
+            base.AppendMessage(msg);
+
+            if (GoonListen)
+            {
+                Notify();
+            }
+        }
+
         public void WaitListensStop()
         {
             foreach (Thread item in m_threadList)
