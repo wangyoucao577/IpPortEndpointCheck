@@ -20,7 +20,7 @@ namespace IpPortEndpointCheck
         {
 
             UdpServers udpServer = (UdpServers)data;
-            int port = udpServer.PopPort();
+            IPEndPoint localEndpoint = udpServer.PopEndpoint();
 
             //Receive
             //Creates an IPEndPoint to record the IP Address and port number of the sender. 
@@ -28,7 +28,7 @@ namespace IpPortEndpointCheck
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
             try
             {
-                UdpClient ucli = new UdpClient(port);
+                UdpClient ucli = new UdpClient(localEndpoint);
 
                 while (udpServer.GoonListen)
                 {
@@ -37,12 +37,15 @@ namespace IpPortEndpointCheck
 
                     string returnData = Encoding.ASCII.GetString(receiveBytes);
 
-                    Trace.WriteLine("This is the message you received :" +
-                                                 returnData.ToString());
-                    Trace.WriteLine("This message was sent from " +
-                                                RemoteIpEndPoint.Address.ToString() +
-                                                " on their port number " +
-                                                RemoteIpEndPoint.Port.ToString());
+                    Trace.WriteLine("(UDP Received) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
+                        + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}");
+                    //Trace.WriteLine("This is the message you received :" +
+                    //                            returnData.ToString());
+
+                    //Trace.WriteLine("This message was sent from " +
+                    //                            RemoteIpEndPoint.Address.ToString() +
+                    //                            " on their port number " +
+                    //                            RemoteIpEndPoint.Port.ToString());
 
                     if (returnData.ToString().Contains(UdpServers.kAskQuestion))
                     {
@@ -60,7 +63,7 @@ namespace IpPortEndpointCheck
                 switch (ex.SocketErrorCode)
                 {
                     case SocketError.AddressAlreadyInUse:
-                        udpServer.AddExceptionalPort(port);
+                        udpServer.AddExceptionalPort(localEndpoint.Port);
                         break;
                     default:
                         Trace.WriteLine(ex.ToString());

@@ -12,7 +12,7 @@ namespace IpPortEndpointCheck
         protected const string kAskQuestion = "AreYouOk?";
         protected const string kAnswer = "ImOk!";
 
-        protected List<int> m_portList = new List<int>();
+        protected List<IPEndPoint> m_portList = new List<IPEndPoint>();
         protected object m_portListMutex = new object();
 
         protected List<int> m_exceptionalPortList = new List<int>();
@@ -51,15 +51,22 @@ namespace IpPortEndpointCheck
 
             lock (m_portListMutex)
             {
-                m_portList.Add(port);
+                if (Socket.SupportsIPv4)
+                {
+                    m_portList.Add(new IPEndPoint(IPAddress.Any, port));
+                }
+                if (Socket.OSSupportsIPv6)
+                {
+                    m_portList.Add(new IPEndPoint(IPAddress.IPv6Any, port));
+                }
             }
 
             return true;
         }
 
-        public int PopPort()
+        public IPEndPoint PopEndpoint()
         {
-            int port = 0;
+            IPEndPoint port;
             lock (m_portListMutex)
             {
                 port = m_portList[0];

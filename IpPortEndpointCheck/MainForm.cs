@@ -357,15 +357,18 @@ namespace IpPortEndpointCheck
                 {
                     m_tcpListeners.StopListen();
 
-                    TcpClients tclis = new TcpClients(IPAddress.Parse("127.0.0.1"));
+                    TcpClients tclis = new TcpClients(IPAddress.Loopback);
+                    TcpClients tclisv6 = new TcpClients(IPAddress.IPv6Loopback);
                     foreach (string item in tcpPorts)
                     {
                         tclis.AddPort(Convert.ToInt32(item));
+                        tclisv6.AddPort(Convert.ToInt32(item));
                     }
                     tclis.StartConnect();
+                    tclisv6.StartConnect();
 
-                    List<int> exceptionalTcpPorts;
-                    while (!tclis.IsConnectFinished(out exceptionalTcpPorts))
+                    List<int> exceptionalTcpPorts, exceptionalTcpPortsv6;
+                    while (!tclis.IsConnectFinished(out exceptionalTcpPorts) || !tclisv6.IsConnectFinished(out exceptionalTcpPortsv6))
                     {
                         Thread.Sleep(500);
                     }
@@ -378,15 +381,18 @@ namespace IpPortEndpointCheck
                 {
                     m_udpServers.StopListen();
 
-                    UdpClients uclis = new UdpClients(IPAddress.Parse("127.0.0.1"));
+                    UdpClients uclis = new UdpClients(IPAddress.Loopback);
+                    UdpClients uclisv6 = new UdpClients(IPAddress.IPv6Loopback);
                     foreach (string item in udpPorts)
                     {
                         uclis.AddPort(Convert.ToInt32(item));
+                        uclisv6.AddPort(Convert.ToInt32(item));
                     }
                     uclis.StartConnect();
+                    uclisv6.StartConnect();
 
-                    List<int> exceptionalTcpPorts;
-                    while (!uclis.IsConnectFinished(out exceptionalTcpPorts))
+                    List<int> exceptionalUdpPorts, exceptionalUdpPortsv6;
+                    while (!uclis.IsConnectFinished(out exceptionalUdpPorts) || !uclisv6.IsConnectFinished(out exceptionalUdpPortsv6))
                     {
                         Thread.Sleep(500);
                     }

@@ -21,10 +21,10 @@ namespace IpPortEndpointCheck
         static private void TcpListenerThreadProc(object data)
         {
             TcpListeners tcpListener = (TcpListeners)data;
-            int port = tcpListener.PopPort();
-
+            IPEndPoint localEndpoint = tcpListener.PopEndpoint();
             
-            TcpListener listener = new TcpListener(IPAddress.Any, port);
+            TcpListener listener = new TcpListener(localEndpoint);
+            
 
             try
             {
@@ -34,8 +34,9 @@ namespace IpPortEndpointCheck
                 {
                     TcpClient cli = listener.AcceptTcpClient();
 
-                    Trace.WriteLine("LocalEndPoint:" + cli.Client.LocalEndPoint.ToString() + " accept a Tcp Client succeed, RemoteEndPoint:" +
-                                                cli.Client.RemoteEndPoint.ToString());
+                    Trace.WriteLine("(TCP Accepted) LocalEndPoint {" + cli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
+                        + cli.Client.RemoteEndPoint.ToString() + "}");
+
                     cli.Close();
                 }
 
@@ -46,7 +47,7 @@ namespace IpPortEndpointCheck
                 switch (ex.SocketErrorCode)
                 {
                     case SocketError.AddressAlreadyInUse:
-                        tcpListener.AddExceptionalPort(port);
+                        tcpListener.AddExceptionalPort(localEndpoint.Port);
                         break;
                     default:
                         Debug.Assert(false);

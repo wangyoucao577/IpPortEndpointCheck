@@ -22,9 +22,16 @@ namespace IpPortEndpointCheck
         static private void UdpConnectThreadProc(object data)
         {
             UdpClients udpClients = (UdpClients)data;
-            int port = udpClients.PopPort();
+            IPEndPoint peerEndpoint = udpClients.PopEndpoint();
+            if (peerEndpoint.AddressFamily != udpClients.TargetIP.AddressFamily)
+            {
+                //ip stack not match
+                udpClients.DoDecrease();
+                return;
+            }
 
-            UdpClient ucli = new UdpClient();
+
+            UdpClient ucli = new UdpClient(udpClients.TargetIP.AddressFamily);
             Socket uSocket = ucli.Client;
             uSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
 
@@ -32,7 +39,7 @@ namespace IpPortEndpointCheck
             Byte[] sendBytes = Encoding.ASCII.GetBytes(UdpClients.kAskQuestion);
             try
             {
-                ucli.Send(sendBytes, sendBytes.Length, new IPEndPoint(udpClients.TargetIP, port));
+                ucli.Send(sendBytes, sendBytes.Length, new IPEndPoint(udpClients.TargetIP, peerEndpoint.Port));
             }
             catch (Exception e)
             {
@@ -66,7 +73,7 @@ namespace IpPortEndpointCheck
                 }
                 else
                 {
-                    udpClients.AddExceptionalPort(port);
+                    udpClients.AddExceptionalPort(peerEndpoint.Port);
                 }
 
             }
@@ -79,7 +86,7 @@ namespace IpPortEndpointCheck
                         break;
                 }
 
-                udpClients.AddExceptionalPort(port);
+                udpClients.AddExceptionalPort(peerEndpoint.Port);
             }
             catch (Exception e)
             {

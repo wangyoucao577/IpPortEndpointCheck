@@ -21,14 +21,20 @@ namespace IpPortEndpointCheck
         static private void TcpConnectThreadProc(object data)
         {
             TcpClients tcpClients = (TcpClients)data;
-            int port = tcpClients.PopPort();
+            IPEndPoint peerEndpoint = tcpClients.PopEndpoint();
+            if (peerEndpoint.AddressFamily != tcpClients.TargetIP.AddressFamily)
+            {   
+                //ip stack not match
+                tcpClients.DoDecrease();
+                return;
+            }
 
-            TcpClient tcli = new TcpClient();
+            TcpClient tcli = new TcpClient(tcpClients.TargetIP.AddressFamily);
             tcli.SendTimeout = 1000;
 
             try
             {
-                tcli.Connect(new IPEndPoint(tcpClients.TargetIP, port));
+                tcli.Connect(new IPEndPoint(tcpClients.TargetIP, peerEndpoint.Port));
                 tcli.Close();
             }
             catch (SocketException ex)
@@ -36,10 +42,10 @@ namespace IpPortEndpointCheck
                 switch (ex.ErrorCode)
                 {
                     case 10061:
-                        tcpClients.AddExceptionalPort(port);
+                        tcpClients.AddExceptionalPort(peerEndpoint.Port);
                         break;
                     default:
-                        tcpClients.AddExceptionalPort(port);
+                        tcpClients.AddExceptionalPort(peerEndpoint.Port);
                         break;
                 }
             }
