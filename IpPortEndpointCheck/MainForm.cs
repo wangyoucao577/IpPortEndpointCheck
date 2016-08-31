@@ -116,7 +116,7 @@ namespace IpPortEndpointCheck
 
         private void appendTcpPort(string port)
         {
-            if (-1 == tcpPortsTextBox.Text.IndexOf(port))
+            if (-1 == tcpPortsTextBox.Text.IndexOf(port + "\r\n"))
             {
                 tcpPortsTextBox.AppendText(port + "\r\n");
             }
@@ -124,7 +124,7 @@ namespace IpPortEndpointCheck
         
         private void appendUdpPort(string port)
         {
-            if (-1 == udpPortsTextBox.Text.IndexOf(port))
+            if (-1 == udpPortsTextBox.Text.IndexOf(port + "\r\n"))
             {
                 udpPortsTextBox.AppendText(port + "\r\n");
             }
