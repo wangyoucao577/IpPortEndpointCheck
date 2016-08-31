@@ -234,7 +234,6 @@ namespace IpPortEndpointCheck
             if (checkBoxTcp.Checked)
             {
                 TcpClients tclis = new TcpClients(ip);
-                tclis.Attach(this);
                 foreach (string item in tcpPorts)
                 {
                     tclis.AddPort(Convert.ToInt32(item));
@@ -270,7 +269,6 @@ namespace IpPortEndpointCheck
                 showText += "\nUDP Ports ";
 
                 UdpClients tclis = new UdpClients(ip);
-                tclis.Attach(this);
                 foreach (string item in udpPorts)
                 {
                     tclis.AddPort(Convert.ToInt32(item));
