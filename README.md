@@ -25,5 +25,6 @@ This tool is designed for check whether IPPortEndpoint is opened on the internet
 
 ## Links
 - Homepage: https://github.com/wangyoucao577/IpPortEndpointCheck
+- Usage: https://github.com/wangyoucao577/IpPortEndpointCheck#usage
 - Donwloads: https://github.com/wangyoucao577/IpPortEndpointCheck/releases
 - Author's Email: wangyoucao577@gmail.com
