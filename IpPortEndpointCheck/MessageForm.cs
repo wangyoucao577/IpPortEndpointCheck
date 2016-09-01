@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace IpPortEndpointCheck
 {
@@ -16,6 +17,23 @@ namespace IpPortEndpointCheck
             InitializeComponent();
 
             //Print Local Machine IP Address
+
+            //NetworkInterface[] ifs = NetworkInterface.GetAllNetworkInterfaces();
+            //PushNewMessage("---------- Local Machine Network Interface ----------");
+            //foreach (NetworkInterface ni in ifs)
+            //{
+            //    //if (NetworkInterface.GetIsNetworkAvailable())
+            //    {
+            //        PushNewMessage(ni.Name + " --- " + ni.NetworkInterfaceType.ToString() + " --- ");
+            //        foreach (UnicastIPAddressInformation uii in ni.GetIPProperties().UnicastAddresses)
+            //        {
+            //            PushNewMessage(uii.Address.AddressFamily.ToString() + "   { " + uii.Address.ToString() + " }");
+            //        }
+            //    }
+                    
+            //}
+            //PushNewMessage("---------- Local Machine Network Interface ----------\r\n\r\n\r\n");
+
             IPAddress[] localIP = Dns.GetHostAddresses("");
             PushNewMessage("---------- Local Machine IP Address ----------");
             foreach (IPAddress ip in localIP)
