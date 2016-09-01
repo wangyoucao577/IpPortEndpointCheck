@@ -7,6 +7,10 @@ This tool is designed for check whether IPPortEndpoint is opened on the internet
 - Support both IPv4 and IPv6
 - Support work as Client or Server
 
+## When to use?
+- If you run a service(website, ssh, sip, etc.) on a server with public IP, and you want to make sure the firewall opened the specified TCP or UDP ports...
+- If you have some problems when you test your iOS app with ipv6 via Mac's NAT64, and you want to check whether the NAT64 works well or not...
+
 ## Requirement
 - .NET Framework 2.0
 
