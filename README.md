@@ -7,3 +7,12 @@ This tool is designed for check whether IPPortEndpoint is opened on the internet
 - Support both IPv4 and IPv6
 - Support work as Client or Server
 
+## Requirement
+- .NET Framework 2.0
+
+## Usage
+
+## Links
+- Homepage: https://github.com/wangyoucao577/IpPortEndpointCheck
+- Donwloads: https://github.com/wangyoucao577/IpPortEndpointCheck/releases
+- Author's Email: wangyoucao577@gmail.com
