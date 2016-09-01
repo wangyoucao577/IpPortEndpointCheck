@@ -11,6 +11,17 @@ This tool is designed for check whether IPPortEndpoint is opened on the internet
 - .NET Framework 2.0
 
 ## Usage
+- As server
+
+
+![usage as server](https://github.com/wangyoucao577/IpPortEndpointCheck/blob/master/usage%20as%20server.png)
+
+- As client
+
+
+![usage as client](https://github.com/wangyoucao577/IpPortEndpointCheck/blob/master/usage%20as%20client.png)
+
+
 
 ## Links
 - Homepage: https://github.com/wangyoucao577/IpPortEndpointCheck
