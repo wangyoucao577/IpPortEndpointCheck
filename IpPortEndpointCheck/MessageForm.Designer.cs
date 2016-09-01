@@ -40,6 +40,7 @@
             this.messageTextBox.Location = new System.Drawing.Point(0, 0);
             this.messageTextBox.Multiline = true;
             this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.ReadOnly = true;
             this.messageTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.messageTextBox.Size = new System.Drawing.Size(593, 378);
             this.messageTextBox.TabIndex = 0;

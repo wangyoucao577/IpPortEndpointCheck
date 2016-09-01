@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
 
 namespace IpPortEndpointCheck
 {
@@ -13,6 +14,17 @@ namespace IpPortEndpointCheck
         public MessageForm()
         {
             InitializeComponent();
+
+            //Print Local Machine IP Address
+            IPAddress[] localIP = Dns.GetHostAddresses("");
+            PushNewMessage("---------- Local Machine IP Address ----------");
+            foreach (IPAddress ip in localIP)
+            {
+                PushNewMessage(ip.AddressFamily.ToString() + "   { " + ip.ToString() + " }");
+            }
+            PushNewMessage("---------- Local Machine IP Address ----------\r\n\r\n\r\n");
+            
+            
         }
 
         private void clearButton_Click(object sender, EventArgs e)
