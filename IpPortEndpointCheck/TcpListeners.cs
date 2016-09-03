@@ -40,12 +40,9 @@ namespace IpPortEndpointCheck
 
                     tcpListener.AppendMessage(msg);
                     
-                    
-
                     cli.Close();
                 }
 
-                listener.Stop();
             }
             catch (SocketException ex)
             {
@@ -55,13 +52,17 @@ namespace IpPortEndpointCheck
                         string msg = "(TCP Listener: AddressAlreadyInUse) LocalEndPoint {" + localEndpoint.ToString() + "}";
                         Debug.WriteLine(msg);
                         tcpListener.AppendMessage(msg);
-
+                        
                         tcpListener.AddExceptionalPort(localEndpoint.Port);
                         break;
                     default:
                         Debug.Assert(false);
                         break;
                 }
+            }
+            finally
+            {
+                listener.Stop();
             }
 
             tcpListener.DoDecrease();
