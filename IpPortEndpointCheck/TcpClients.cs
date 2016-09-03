@@ -35,7 +35,7 @@ namespace IpPortEndpointCheck
             try
             {
                 tcli.Connect(new IPEndPoint(tcpClients.TargetIP, peerEndpoint.Port));
-                tcli.Close();
+                
             }
             catch (SocketException ex)
             {
@@ -48,6 +48,10 @@ namespace IpPortEndpointCheck
                         tcpClients.AddExceptionalPort(peerEndpoint.Port);
                         break;
                 }
+            }
+            finally
+            {
+                tcli.Close();
             }
 
             tcpClients.DoDecrease();

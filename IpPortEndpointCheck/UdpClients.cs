@@ -34,25 +34,15 @@ namespace IpPortEndpointCheck
             UdpClient ucli = new UdpClient(udpClients.TargetIP.AddressFamily);
             Socket uSocket = ucli.Client;
             uSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
-
-            //Send
             Byte[] sendBytes = Encoding.ASCII.GetBytes(UdpClients.kAskQuestion);
-            try
-            {
-                ucli.Send(sendBytes, sendBytes.Length, new IPEndPoint(udpClients.TargetIP, peerEndpoint.Port));
-            }
-            catch (Exception e)
-            {
-                Trace.WriteLine(e.ToString());
-                Debug.Assert(false);
-            }
 
-            //Receive
             //Creates an IPEndPoint to record the IP Address and port number of the sender. 
             // The IPEndPoint will allow you to read datagrams sent from any source.
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
             try
             {
+                //Send
+                ucli.Send(sendBytes, sendBytes.Length, new IPEndPoint(udpClients.TargetIP, peerEndpoint.Port));
 
                 // Blocks until a message returns on this socket from a remote host.
                 Byte[] receiveBytes = ucli.Receive(ref RemoteIpEndPoint);
@@ -62,16 +52,6 @@ namespace IpPortEndpointCheck
                 string msg = "(UDP Client Received) LocalEndPoint {" + ucli.Client.LocalEndPoint.ToString() + "}, RemoteEndPoint {"
                     + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}";
                 Trace.WriteLine(msg);
-
-                ucli.Close();
-
-
-                //Trace.WriteLine("This is the message you received :" +
-                //                             returnData.ToString());
-                //Trace.WriteLine("This message was sent from " +
-                //                            RemoteIpEndPoint.Address.ToString() +
-                //                            " on their port number " +
-                //                            RemoteIpEndPoint.Port.ToString());
 
                 if (returnData.ToString().Contains(UdpClients.kAnswer))
                 {
@@ -88,10 +68,12 @@ namespace IpPortEndpointCheck
                 Trace.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
                 switch (ex.SocketErrorCode)
                 {
+                    case SocketError.TimedOut:
+                    case SocketError.ConnectionReset:
+                        break;
                     default:
                         break;
                 }
-
                 udpClients.AddExceptionalPort(peerEndpoint.Port);
             }
             catch (Exception e)
@@ -99,9 +81,12 @@ namespace IpPortEndpointCheck
                 Trace.WriteLine(e.ToString());
                 Debug.Assert(false);
             }
+            finally
+            {
+                ucli.Close();
+            }
 
             udpClients.DoDecrease();
         }
-
     }
 }

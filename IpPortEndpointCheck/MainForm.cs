@@ -272,7 +272,7 @@ namespace IpPortEndpointCheck
 
             if (checkBoxUdp.Checked)
             {
-                ThreadSafePushNewMessage("Start as Tcp Client, Peer IP " + ip.ToString() + " Udp ports " + String.Join(" ", udpPorts));
+                ThreadSafePushNewMessage("Start as Udp Client, Peer IP " + ip.ToString() + " Udp ports " + String.Join(" ", udpPorts));
 
                 showText += "\nUDP Ports ";
 
