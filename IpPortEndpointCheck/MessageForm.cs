@@ -62,7 +62,7 @@ namespace IpPortEndpointCheck
             if (messageTextBox.InvokeRequired)
             {
                 PushNewMessageCallback d = new PushNewMessageCallback(PushNewMessage);
-                this.Invoke(d, new object[] { msg });
+                this.BeginInvoke(d, new object[] { msg });
             }
             else
             {
