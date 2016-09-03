@@ -466,7 +466,7 @@ namespace IpPortEndpointCheck
         {
             NetClients cl = (NetClients)sub;
             string msg = cl.GetNextMessage();
-            Trace.WriteLine("Observer : " + msg);
+            Debug.WriteLine("Observer : " + msg);
 
             ThreadSafePushNewMessage(msg);
         }
