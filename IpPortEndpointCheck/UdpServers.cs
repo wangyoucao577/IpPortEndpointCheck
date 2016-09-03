@@ -26,66 +26,67 @@ namespace IpPortEndpointCheck
             //Creates an IPEndPoint to record the IP Address and port number of the sender. 
             // The IPEndPoint will allow you to read datagrams sent from any source.
             IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            
             try
             {
                 UdpClient ucli = new UdpClient(localEndpoint);
-
                 while (udpServer.GoonListen)
                 {
                     // Blocks until a message returns on this socket from a remote host.
                     Byte[] receiveBytes = ucli.Receive(ref RemoteIpEndPoint);
-
                     string returnData = Encoding.ASCII.GetString(receiveBytes);
 
                     string msg = "(UDP Server: Received) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
                         + RemoteIpEndPoint.ToString() + "}, msg-->{" + returnData.ToString() + "}";
-                    Trace.WriteLine(msg);
-
+                    Debug.WriteLine(msg);
                     udpServer.AppendMessage(msg);
                     
-
-                    //Trace.WriteLine("This is the message you received :" +
-                    //                            returnData.ToString());
-
-                    //Trace.WriteLine("This message was sent from " +
-                    //                            RemoteIpEndPoint.Address.ToString() +
-                    //                            " on their port number " +
-                    //                            RemoteIpEndPoint.Port.ToString());
-
                     if (returnData.ToString().Contains(UdpServers.kAskQuestion))
                     {
                         Byte[] sendBytes = Encoding.ASCII.GetBytes(UdpServers.kAnswer);
                         ucli.Send(sendBytes, sendBytes.Length, RemoteIpEndPoint);
-                    }
-                    
-                }
 
+                        string sendMsg = "(UDP Server: AckSent) LocalEndPoint {" + localEndpoint.ToString() + "}, RemoteEndPoint {"
+                        + RemoteIpEndPoint.ToString() + "}, msg-->{" + UdpServers.kAnswer + "}";
+                        Debug.WriteLine(sendMsg);
+                        udpServer.AppendMessage(sendMsg);
+                    }
+                }
                 ucli.Close();
             }
             catch (SocketException ex)
             {
-                Trace.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
+                Debug.WriteLine("SocketErrorcode " + ex.ErrorCode + ", " + ex.ToString());
                 switch (ex.SocketErrorCode)
                 {
                     case SocketError.AddressAlreadyInUse:
-                        string msg = "(UDP Server: AddressAlreadyInUse) LocalEndPoint {" + localEndpoint.ToString() + "}";
-                        Trace.WriteLine(msg);
-                        udpServer.AppendMessage(msg);
+                        {
+                            string msg = "(UDP Server: AddressAlreadyInUse) LocalEndPoint {" + localEndpoint.ToString() + "}";
+                            Debug.WriteLine(msg);
+                            udpServer.AppendMessage(msg);
 
-                        udpServer.AddExceptionalPort(localEndpoint.Port);
+                            udpServer.AddExceptionalPort(localEndpoint.Port);
+                        }
                         break;
                     default:
-                        Trace.WriteLine(ex.ToString());
-                        Debug.Assert(false);
+                        {
+                            Debug.WriteLine(ex.ToString());
+                            Debug.Assert(false);
+                            //string msg = "(UDP Server: Error) LocalEndPoint {" + localEndpoint.ToString() + "}, Error Code "
+                            //    + ex.ErrorCode.ToString() + " Error Msg: " + ex.Message;
+                            //Debug.WriteLine(msg);
+                            //udpServer.AppendMessage(msg);
+                        }
                         break;
                 }
             }
             catch (Exception e)
             {
-                Trace.WriteLine(e.ToString());
+                Debug.WriteLine(e.ToString());
                 Debug.Assert(false);
             }
 
+            
             udpServer.DoDecrease();
         }
     }
